@@ -1,7 +1,5 @@
 /**
- * @brief      h file for add tests
- *
- * @author     Némo CAZIN
+ * @author     Némo Cazin
  * @date       2026
  */
 

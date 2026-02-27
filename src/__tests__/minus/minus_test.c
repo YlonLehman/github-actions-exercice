@@ -1,8 +1,6 @@
 /**
- * @brief      Unit tests for minus function
- *
- * @author     Némo CAZIN
- * @date       2025 - 2026
+ * @author     Némo Cazin
+ * @date       2026
  */
 
 #include "minus_test.h"

@@ -1,3 +1,8 @@
+/**
+ * @author     Némo Cazin
+ * @date       2026
+ */
+
 #include <stdlib.h>
 #include "libs/add/add.h"
 #include "libs/minus/minus.h"

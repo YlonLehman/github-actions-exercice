@@ -1,3 +1,8 @@
+/**
+ * @author     Némo Cazin
+ * @date       2026
+ */
+
 #include "add.h"
 
 /**

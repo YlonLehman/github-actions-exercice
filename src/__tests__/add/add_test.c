@@ -1,8 +1,6 @@
 /**
- * @brief      Unit tests for Add class
- *
- * @author     Némo CAZIN
- * @date       2025 - 2026
+ * @author     Némo Cazin
+ * @date       2026
  */
 
 #include "add_test.h"

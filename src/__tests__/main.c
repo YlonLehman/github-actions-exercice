@@ -1,3 +1,8 @@
+/**
+ * @author     Némo Cazin
+ * @date       2026
+ */
+
 #include <check.h>
 #include "add/add_test.h"
 #include "minus/minus_test.h"
