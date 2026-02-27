@@ -40,8 +40,5 @@ $(TEST_BIN): $(TEST_MAIN) $(TEST_SRC) $(TEST_OBJ)
 test: $(TEST_BIN)
 	$(TEST_BIN)
 
-run: $(TARGET)
-	./$(TARGET)
-
 clean:
 	rm -rf $(BUILD)
