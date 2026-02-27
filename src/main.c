@@ -3,6 +3,7 @@
 #include "libs/minus/minus.h"
 
 int main(int argc, char *argv[]) {
+    // Check if the correct number of arguments is provided
     if (argc != 3) {
         fprintf(stderr, "Usage: %s <num1> <num2>\n", argv[0]);
         return 1;

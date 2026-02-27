@@ -17,7 +17,12 @@ SRC = src/main.c \
       src/libs/minus/minus.c
 OBJ = $(patsubst src/%.c, $(BUILD)/%.o, $(SRC))
 
-.PHONY: all clean run
+TEST_MAIN = src/__tests__/main.c
+TEST_SRC  = $(wildcard src/__tests__/**/*.c)
+TEST_BIN  = $(BUILD)/tests
+TEST_OBJ  = $(filter-out $(BUILD)/main.o, $(OBJ))
+
+.PHONY: all clean run test
 
 all: $(TARGET)
 
@@ -27,6 +32,13 @@ $(TARGET): $(OBJ)
 $(BUILD)/%.o: src/%.c
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -c $< -o $@
+
+$(TEST_BIN): $(TEST_MAIN) $(TEST_SRC) $(TEST_OBJ)
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -o $@ $(TEST_MAIN) $(TEST_SRC) $(TEST_OBJ) -lcheck -lm -lsubunit -pthread
+
+test: $(TEST_BIN)
+	$(TEST_BIN)
 
 run: $(TARGET)
 	./$(TARGET)
