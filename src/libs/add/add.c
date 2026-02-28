@@ -7,12 +7,10 @@
 
 /**
  * @brief Add two integers and return the result.
- * 
- * @param a The first integer to add.
- * @param b The second integer to add.
- * 
- * @return The sum of a and b.
+ *
+ * @param num1 The first integer to add.
+ * @param num2 The second integer to add.
+ *
+ * @return The sum of num1 and num2.
  */
-int add (int a, int b) {
-    return a + b;
-}
+int add(int num1, int num2) { return num1 + num2; }

@@ -9,6 +9,6 @@
 #include <stdio.h>
 
 // Prototype for the add function
-int add(int a, int b);
+int add(int num1, int num2);
 
 #endif

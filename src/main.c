@@ -3,7 +3,9 @@
  * @date       2026
  */
 
+#include <stdio.h>
 #include <stdlib.h>
+
 #include "libs/add/add.h"
 #include "libs/minus/minus.h"
 
