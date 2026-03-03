@@ -22,7 +22,8 @@ jobs:
       # Installation des packages manquant
       - name: install-packages
         # --no-cache limite l'utilisation de la mémoire
-        run: apk add --no-cache make
+        # build-base installe les packages nécessaires (gcc, make, etc...)
+        run: apk add --no-cache build-base
 
       # Lance la commande `make`
       - name: compile-project
