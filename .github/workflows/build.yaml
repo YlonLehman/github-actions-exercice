@@ -1,0 +1,14 @@
+name: build-project
+# run-name:
+on:
+  push:
+    # Rien précisé donc tout
+
+jobs:
+  compile:
+    steps:
+      - name: get-code
+        uses: actions/checkout@v4
+
+      - name: compile-project
+        run: make
