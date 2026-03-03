@@ -1,17 +1,29 @@
+# Nom du workflow
 name: build-project
-# run-name:
+# Exécuté lors du push
 on:
   push:
     # Rien précisé donc tout
 
 jobs:
   compile:
+    # VM avec la dernière version de ubuntu
     runs-on: ubuntu-latest
+    # Image (dans ce cas alpine version 3.19)
     container:
       image: alpine:3.19
+
+    # Tous les étapes
     steps:
+      # Récupère le code
       - name: get-code
         uses: actions/checkout@v4
 
+      # Installation des packages manquant
+      - name: install-packages
+        # --no-cache limite l'utilisation de la mémoire
+        run: apk add --no-cache make
+
+      # Lance la commande `make`
       - name: compile-project
         run: make
