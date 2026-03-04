@@ -1,0 +1,28 @@
+name: perform-tests
+on:
+  push:
+
+jobs:
+  tests:
+    # VM avec la dernière version de ubuntu
+    runs-on: ubuntu-latest
+    # Image (dans ce cas alpine version 3.19)
+    container:
+      image: alpine:3.19
+
+    if: ${{ github.event.compile.conclusion == "success" }}
+    
+    steps:
+      # Récupère le code
+      - name: get-code
+        uses: actions/checkout@v4
+
+      # Installation des packages manquant
+      - name: install-packages
+        # --no-cache limite l'utilisation de la mémoire
+        # build-base installe les packages nécessaires (gcc, make, etc...)
+        run: apk add --no-cache build-base
+
+      # 
+      - name: tests
+        run: make test
