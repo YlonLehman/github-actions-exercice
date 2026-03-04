@@ -1,6 +1,9 @@
 name: perform-tests
 on:
   push:
+  workflow_run:
+    workflows: ['compile']
+    types: [completed]
 
 jobs:
   tests:
@@ -10,7 +13,7 @@ jobs:
     container:
       image: alpine:3.19
 
-    if: ${{ github.event.compile.conclusion == "success" }}
+    if: ${{ github.event.workflow_run.conclusion == "success" }}
     
     steps:
       # Récupère le code
