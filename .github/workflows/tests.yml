@@ -13,7 +13,7 @@ jobs:
     container:
       image: alpine:3.19
 
-    if: ${{ github.event.workflow_run.conclusion == "success" }}
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     
     steps:
       # Récupère le code
