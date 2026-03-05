@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     # Image (dans ce cas alpine version 3.19)
     container:
-      image: alpine:3.19
+      image: bookworm-slim
 
     steps:
       # Récupère le code
@@ -24,8 +24,7 @@ jobs:
       - name: install-packages
         # --no-cache limite l'utilisation de la mémoire
         # build-base installe les packages nécessaires (gcc, make, etc...)
-        run: apk add --no-cache build-base
+        run: apt install --no-cache build-base check
 
-      # 
       - name: run-tests
         run: make test
