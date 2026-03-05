@@ -24,7 +24,9 @@ jobs:
       - name: install-packages
         # --no-cache limite l'utilisation de la mémoire
         # build-base installe les packages nécessaires (gcc, make, etc...)
-        run: apt install --no-cache build-base check
+        run: apt-get install -y --no-install-recommends \
+             build-essential \
+             check
 
       - name: run-tests
         run: make test
