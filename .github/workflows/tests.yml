@@ -22,12 +22,11 @@ jobs:
 
       # Installation des packages manquant
       - name: install-packages
-        # --no-cache limite l'utilisation de la mémoire
-        # build-base installe les packages nécessaires (gcc, make, etc...)
-        run: apt install build-base check
-        # run: apt-get install -y --no-install-recommends \
-        #      build-essential \
-        #      check
+        # --no-install-recommends limite l'utilisation de la mémoire
+        # build-essential installe les packages nécessaires (gcc, make, etc...)
+        # check installe le framework de tests en C
+        run: apt-get update && \
+             apt-get install -y --no-install-recommends build-essential check
 
       - name: run-tests
         run: make test
