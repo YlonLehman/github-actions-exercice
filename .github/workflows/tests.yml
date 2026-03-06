@@ -14,7 +14,8 @@ jobs:
     runs-on: ubuntu-latest
     # Image (dans ce cas alpine version 3.19)
     container:
-      image: alpine:3.19
+      # image: alpine:3.19
+      image: debian:bookworm-slim
 
     steps:
       # Récupère le code
@@ -27,11 +28,14 @@ jobs:
         # build-essential installe les packages nécessaires (gcc, make, etc...)
         # check installe le framework de tests en C
         # If debian
-        # run: apt-get update && \
-        #      apt-get install -y --no-install-recommends build-essential check
+        run: apt-get update && \
+             apt-get install -y --no-install-recommends build-essential check
+        # run: apt-get install -y --no-install-recommends \
+        #     build-essential \
+        #     check
 
         # If alpine
-        run: apk add --no-cache build-base check
+        # run: apk add --no-cache build-base check
 
       # Lance le make pour les tests
       - name: run-tests
