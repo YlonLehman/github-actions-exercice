@@ -1,20 +1,15 @@
 name: run-tests
-on:
-  # workflow_run:
-  #   workflows: ["build-project"]
-  #   types:
-  #     - completed
-  push:
-  pull_request:
+on: [push, pull_request]
+  # push:
+  # pull_request:
 
 jobs:
   tests:
-
+    name: Perform tests
     # VM avec la dernière version de ubuntu
     runs-on: ubuntu-latest
     # Image (dans ce cas alpine version 3.19)
     container:
-      # image: alpine:3.19
       image: debian:bookworm-slim
 
     steps:
@@ -24,25 +19,47 @@ jobs:
 
       # Installation des packages manquant
       - name: install-packages
-        # --no-install-recommends limite l'utilisation de la mémoire
-        # build-essential installe les packages nécessaires (gcc, make, etc...)
-        # check installe le framework de tests en C
-        # If debian
-        # run: apt install apt-get && \
-        #      apt-get update && \
-        #      apt-get install -y --no-install-recommends build-essential check
-        # run: apt-get install -y --no-install-recommends \
-        #     build-essential \
-        #     check
         run: |
           apt-get update
           apt-get install -y --no-install-recommends \
             build-essential \
             check
 
-        # If alpine
-        # run: apk add --no-cache build-base check
-
       # Lance le make pour les tests
       - name: run-tests
         run: make test
+
+  linter:
+    name: Linter
+    runs-on: ubuntu-latest
+    container:
+      image: debian:bookworm-slim
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: install-packages
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            build-essential \
+            check \
+            clang-tidy
+
+      - name: Run lint
+        run: make lint
+
+  format-check:
+    name: Checks code format
+    runs-on: ubuntu-latest
+    container:
+      image: debian:booksworm-slim
+
+    steps:
+      - uses: actions/chechout@v4
+      - name: install-packages
+        run: |
+          apt-get upade
+          apt-get install -y --no-install-recommends make clang-format
+
+      - name: Run format check
+        run: make format-check
