@@ -63,3 +63,30 @@ jobs:
 
       - name: Run format check
         run: make format-check
+
+  # Job for the project coverage
+  project-coverage:
+    name: Project coverage
+    runs-on: ubuntu-latest
+    container:
+      image: debian:bookworm-slim
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Package installation
+        run: |
+          apt-get update
+          apt-get install -y --no-install-recommends \
+            build-essential \
+            check \
+            lcov
+      
+      - name: Run coverage
+        run: make coverage
+
+      # Upload a file
+      - name: Upload coverage.info
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage.info
+          path: build/coverage/coverage.info
