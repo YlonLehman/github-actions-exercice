@@ -52,13 +52,13 @@ jobs:
     name: Checks code format
     runs-on: ubuntu-latest
     container:
-      image: debian:booksworm-slim
+      image: debian:bookworm-slim
 
     steps:
       - uses: actions/checkout@v4
       - name: install-packages
         run: |
-          apt-get upade
+          apt-get updade
           apt-get install -y --no-install-recommends make clang-format
 
       - name: Run format check
