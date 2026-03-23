@@ -1,34 +1,33 @@
-name: run-tests
+# Name of the workflow
+name: Run tests
+# When triggered
 on: [push, pull_request]
-  # push:
-  # pull_request:
 
 jobs:
+  # Job for the tests
   tests:
     name: Perform tests
-    # VM avec la dernière version de ubuntu
     runs-on: ubuntu-latest
-    # Image (dans ce cas alpine version 3.19)
     container:
       image: debian:bookworm-slim
 
     steps:
-      # Récupère le code
-      - name: get-code
-        uses: actions/checkout@v4
+      # Get code
+      - uses: actions/checkout@v4
 
-      # Installation des packages manquant
-      - name: install-packages
+      # Missing packages installation
+      - name: Packages installation
         run: |
           apt-get update
           apt-get install -y --no-install-recommends \
             build-essential \
             check
 
-      # Lance le make pour les tests
-      - name: run-tests
+      # Command line to run
+      - name: Run tests
         run: make test
 
+  # Job for the linter
   linter:
     name: Linter
     runs-on: ubuntu-latest
@@ -37,7 +36,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: install-packages
+      - name: Packages installation
         run: |
           apt-get update
           apt-get install -y --no-install-recommends \
@@ -48,6 +47,7 @@ jobs:
       - name: Run lint
         run: make lint
 
+  # Job for the format check
   format-check:
     name: Checks code format
     runs-on: ubuntu-latest
@@ -56,7 +56,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: install-packages
+      - name: Packages installation
         run: |
           apt-get update
           apt-get install -y --no-install-recommends make clang-format
