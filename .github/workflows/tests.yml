@@ -55,7 +55,7 @@ jobs:
       image: debian:booksworm-slim
 
     steps:
-      - uses: actions/chechout@v4
+      - uses: actions/checkout@v4
       - name: install-packages
         run: |
           apt-get upade
