@@ -90,3 +90,26 @@ jobs:
         with:
           name: coverage.info
           path: build/coverage/coverage.info
+          # retention-days: 1 # Delete the file after 1 day
+  
+  # Job for the coverage of the code
+  Codecov:
+    needs: tests
+    name: Codecov
+    runs-on: ubuntu-latest
+    container:
+      image: debian:bookworm-slim
+      
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: coverage.info
+
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          files: ./coverage.info
+          token: ${{ secrets.CODECOV_TOKEN }}
