@@ -89,7 +89,7 @@ jobs:
       - name: Upload coverage.info
         uses: actions/upload-artifact@v4
         with:
-          name: coverage.info
+          name: coverage-info
           path: build/coverage/coverage.info
           # retention-days: 1 # Delete the file after 1 day
   
@@ -98,8 +98,8 @@ jobs:
     needs: project-coverage
     name: Codecov
     runs-on: ubuntu-latest
-    container:
-      image: debian:bookworm-slim
+    # container:
+    #   image: debian:bookworm-slim
       
     steps:
       - uses: actions/checkout@v4
@@ -107,7 +107,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: coverage.info
+          name: coverage-info
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v5
