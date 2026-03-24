@@ -66,6 +66,7 @@ jobs:
 
   # Job for the project coverage
   project-coverage:
+    needs: tests
     name: Project coverage
     runs-on: ubuntu-latest
     container:
@@ -94,7 +95,7 @@ jobs:
   
   # Job for the coverage of the code
   Codecov:
-    needs: tests
+    needs: project-coverage
     name: Codecov
     runs-on: ubuntu-latest
     container:
