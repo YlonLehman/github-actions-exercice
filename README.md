@@ -1,5 +1,7 @@
 # github-actions-exercice
 
+[![Coverage](https://codecov.io/gh/YlonLehman/github-actions-exercice/graph/badge.svg?token=9R76FOBERJ)](https://codecov.io/gh/YlonLehman/github-actions-exercice)
+
 ## Table of Contents
 
 - [github-actions-exercice](#github-actions-exercice)
